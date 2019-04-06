@@ -1,0 +1,57 @@
+body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+}
+
+
+.root,
+iframe,
+img {
+      position: absolute;
+      width: 100vw;
+      height: 100vh
+}
+
+img {
+      z-index: 2
+}
+
+.root {
+      background: radial-gradient(circle, rgb(63,94,251,1) 0%, rgba(252,70,107,1));
+      z-index: 3;
+      display: flex;
+}
+
+.root .centerme {
+      margin: auto;
+      height: 550px;
+      width: 650px;
+      display: flex;
+      flex-direction: column;
+}
+
+.centerme h3 {
+      margin: auto auto 0 auto;
+      color: #eee;
+      font-weight: bold;
+      font-size: 36px;
+}
+
+.centerme .fa-circle {
+      cursor: pointer;
+      font-size: 255px;
+      color: #B20000;
+      margin: 10px auto auto auto;
+}
+
+iframe {
+      z-index: 1;
+}
+
+.fa-volume-up {
+      cursor: pointer;
+      margin: 10px auto auto auto ;
+      color: white;
+      font-size: 36px;
+}
