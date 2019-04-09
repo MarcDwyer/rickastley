@@ -54,7 +54,7 @@ const onPlayerReady = (event) => {
                 document.body.appendChild(volumeDown)
                 document.querySelector('.fa-volume-up').addEventListener('click', () => changeVolume(event))
                 event.target.playVideo();
-                event.target.setVolume(50)
+                event.target.setVolume(playerVolume + 20    )
                 opacity = .8
                 setHeader("What have you done")
             default:
