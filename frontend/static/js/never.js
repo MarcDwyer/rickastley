@@ -14,6 +14,8 @@ window["onYouTubeIframeAPIReady"] = function () {
         }
     });
 };
+
+
 const button = document.querySelector('.fa-circle');
 const header = document.querySelector('h3')
 const root = document.querySelector('.root')
@@ -24,12 +26,11 @@ let count = 0
 let opacity = 1
 
 
-function onPlayerReady(event) {
+const onPlayerReady = (event) => {
     console.log(window["yPlayer"])
     event.target.setVolume(4)
     button.addEventListener('click', () => {
         const playerVolume = event.target.getVolume()
-        console.log(playerVolume)
         switch (count) {
             case 0:
                 event.target.setVolume(20)
@@ -43,21 +44,24 @@ function onPlayerReady(event) {
                 }, 250)
                 count++
                 break
+            case 4:
+                centerDiv.style.display = "none"
+                count++
+                break
             case 1:
                 const volumeDown = document.createElement('i')
                 volumeDown.className = "fas fa-volume-up"
-                centerDiv.appendChild(volumeDown)
+                document.body.appendChild(volumeDown)
                 document.querySelector('.fa-volume-up').addEventListener('click', () => changeVolume(event))
                 event.target.playVideo();
-                event.target.setVolume(playerVolume + 20)
+                event.target.setVolume(50)
                 opacity = .8
+                setHeader("What have you done")
             default:
-                console.log('default ran')
-                header.textContent = count === 1 ? "What have you done..." : "Wow you did it again"
-                setTimeout(() => header.textContent = "Press again to turn off", 2000)
+                const str = count >= 2 ? "You just keep clicking..." : "You did it again..."
+                setHeader(str)
                 root.style.opacity = opacity
-                opacity -= .2
-                event.target.setVolume(playerVolume + 20)
+                opacity -= .35
                 count++
         }
     })
@@ -70,4 +74,8 @@ const changeVolume = (e) => {
 
 const setBackground = () => {
     root.style.opacity = opacity
+}
+
+const setHeader = (str) => {
+    header.textContent = str
 }
