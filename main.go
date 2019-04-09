@@ -11,12 +11,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./frontend/static/"))))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/manifest.json" || r.URL.Path == "/favicon.png" {
-			str := fmt.Sprintf("./public/build/%v", r.URL.Path)
-			http.ServeFile(w, r, str)
-			return
-		}
-		http.ServeFile(w, r, "./frontend/index.html")
+		str := fmt.Sprintf("./frontend/%v", r.URL.Path)
+		http.ServeFile(w, r, str)
 	})
 	http.ListenAndServe(os.Getenv("PORT"), nil)
 }
